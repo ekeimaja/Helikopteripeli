@@ -15,7 +15,7 @@ DEFAULT_MASS = 1
 GRAVITY = (0.0, -900.0)
 
 # Player forces
-HELICOPTER_POWER = 700
+SPEED = 700
 
 # Grid-size
 SPRITE_SIZE = 64

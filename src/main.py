@@ -54,7 +54,8 @@ class MyGame(arcade.Window):
         self.dynamic_sprite_list.append(self.player)
         self.space.add(self.player.body, self.player.shape)
 
-        self.background = arcade.load_texture("../images/bg.png")
+        # Add background image
+        # self.background = arcade.load_texture("../images/bg.png")
 
     def on_draw(self):
         """ Render the screen. """
@@ -69,8 +70,7 @@ class MyGame(arcade.Window):
         self.static_sprite_list.draw()
         self.dynamic_sprite_list.draw()
 
-        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, SCREEN_WIDTH, SCREEN_HEIGHT,
-                                      self.background)
+       # arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
 
     def scroll_viewport(self):
         """ Manage scrolling of the viewport. """
@@ -103,10 +103,25 @@ class MyGame(arcade.Window):
             changed = True
 
         if changed:
-            arcade.set_viewport(self.view_left,
-                                SCREEN_WIDTH + self.view_left,
-                                self.view_bottom,
-                                SCREEN_HEIGHT + self.view_bottom)
+            arcade.set_viewport(self.view_left, SCREEN_WIDTH + self.view_left, self.view_bottom, SCREEN_HEIGHT + self.view_bottom)
+
+    def on_key_press(self, key, modifiers):
+        """ Called whenever the user presses a key. """
+        if key == arcade.key.LEFT:
+            print("LEFT")
+        elif key == arcade.key.RIGHT:
+            print("RIGHT")
+        elif key == arcade.key.UP:
+            print("UP")
+        elif key == arcade.key.DOWN:
+            print("DOWN")
+
+    def on_key_release(self, key, modifiers):
+        """ Called whenever a user releases a key. """
+        if key == arcade.key.LEFT or key == arcade.key.RIGHT:
+            self.player.change_x = 0
+        elif key == arcade.key.UP or key == arcade.key.DOWN:
+            self.player.change_y = 0
 
     def update(self, delta_time):
         """ Update the sprites """
